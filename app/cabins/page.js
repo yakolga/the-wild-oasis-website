@@ -1,5 +1,20 @@
-export default function Cabins() {
+import Counter from "../components/Counter";
+
+export default async function Cabins() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/users');
+  const data = await res.json();
+
+  console.log(data);
+
   return (
-    <h1>Cabins</h1>
+    <div>
+      <h1>Cabins</h1>
+      <ul>
+        {data.map(user => (
+          <li key={user.id}>{user.name}</li>
+        ))}
+      </ul>
+      <Counter/>
+    </div>
   );
 }
